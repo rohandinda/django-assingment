@@ -1,38 +1,28 @@
 # django-todo
 A simple todo app built with django
 
-![todo App](https://raw.githubusercontent.com/shreys7/django-todo/develop/staticfiles/todoApp.png)
 ### Setup
 To get this repository, run the following command inside your git enabled terminal
 ```bash
-$ git clone https://github.com/shreys7/django-todo.git
+$ git clone https://github.com/rohandinda/django-assingment.git
 ```
-You will need django to be installed in you computer to run this app. Head over to https://www.djangoproject.com/download/ for the download guide
+Generate an Access token on your GitHub.
+After then install jenkins and get it running on your EC2 (make sure to open port 8080).
 
-Once you have downloaded django, go to the cloned repo directory and run the following command
+Integrate jenkins and github:-
+manage jenkins> manage plugins> select git client
 
-```bash
-$ python manage.py makemigrations
-```
+Give jenkins personal access token:-
+configure system> GitHub> AddGitHub server> Add credentials> kind(secret text)> set the access token of your GitHub.
 
-This will create all the migrations file (database migrations) required to run this App.
+Making CI/CD Pipeline:-
+1)create a job.
+2)source code management> Git> give repo url.
+3)give the name of branch.
+4)Build Step> Execute shell:-
+  sudo docker build . -t todo-app
+  sudo docker run -p 8000:8000 -d todo-app
+5)Build Now
 
-Now, to apply this migrations run the following command
-```bash
-$ python manage.py migrate
-```
 
-One last step and then our todo App will be live. We need to create an admin user to run this App. On the terminal, type the following command and provide username, password and email for the admin user
-```bash
-$ python manage.py createsuperuser
-```
 
-That was pretty simple, right? Now let's make the App live. We just need to start the server now and then we can start using our simple todo App. Start the server by following command
-
-```bash
-$ python manage.py runserver
-```
-
-Once the server is hosted, head over to http://127.0.0.1:8000/todos for the App.
-
-Cheers and Happy Coding :)
